@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DSA Mentor — Learn DSA. Solve Problems. Think Like a Developer.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<main id="landing">
+  <header class="topbar">
+    <div class="logo">&lt;/&gt; DSA Mentor</div>
+    <button class="btn btn-ghost" id="landing-open-app">Open App</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Master DSA with your AI mentor</h1>
+      <p>Learn algorithms, understand patterns, solve coding problems, and prepare for technical interviews with an AI mentor that teaches instead of simply giving answers.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="start-learning">Start learning</button>
+        <button class="btn btn-ghost" id="explore-topics">Explore DSA topics</button>
+      </div>
+    </div>
+    <div class="hero-preview">
+      <div class="preview-window">
+        <div class="preview-dot"></div><div class="preview-dot"></div><div class="preview-dot"></div>
+      </div>
+      <div class="preview-body">
+        <div class="msg msg-user">Explain binary search like I'm a beginner.</div>
+        <div class="msg msg-ai">
+          Binary search repeatedly halves a sorted list, comparing the middle element to your target until it's found.
+          <div class="code-block">
+            <div class="code-head"><span>complexity</span></div>
+            <pre>Time:  O(log n)
+Space: O(1)</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Your AI DSA mentor</h2>
+    <div class="feature-grid">
+      <article class="feature-card"><h3>Understand concepts clearly</h3><p>Arrays, linked lists, trees, graphs, recursion, dynamic programming, and more — explained in plain language.</p></article>
+      <article class="feature-card"><h3>Get hints, not spoilers</h3><p>Ask for a nudge when you're stuck instead of jumping straight to the full solution.</p></article>
+      <article class="feature-card"><h3>Understand code line by line</h3><p>Paste a solution and ask DSA Mentor to walk through how it works.</p></article>
+      <article class="feature-card"><h3>Analyze your solution</h3><p>Get a clear read on time and space complexity, with the reasoning behind it.</p></article>
+      <article class="feature-card"><h3>Visualize the algorithm</h3><p>Ask for a step-by-step dry run to see exactly how the data moves.</p></article>
+      <article class="feature-card"><h3>Prepare for interviews</h3><p>Practice common patterns and interview-style problems at your own pace.</p></article>
+    </div>
+  </section>
+
+  <section class="topics">
+    <h2>Explore DSA</h2>
+    <div class="topic-grid" id="topic-grid"></div>
+  </section>
+
+  <footer class="site-footer">
+    <div>
+      <strong>DSA Mentor</strong>
+      <p>Learn DSA. Solve problems. Think like a developer.</p>
+    </div>
+    <p class="muted">Built for developers who want to master problem solving.</p>
+  </footer>
+</main>
+
+<!-- ============ APP ============ -->
+<div id="app" class="hidden">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="logo">&lt;/&gt; DSA Mentor</div>
+      <button class="btn btn-primary btn-block" id="new-chat">+ New chat</button>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>DSA topics</h4>
+      <ul class="topic-list" id="sidebar-topics"></ul>
+    </div>
+
+    <div class="sidebar-section sidebar-grow">
+      <h4>Recent chats</h4>
+      <ul class="chat-list" id="chat-list"></ul>
+    </div>
+
+    <button class="btn btn-ghost btn-block" id="back-to-landing">← Back to home</button>
+  </aside>
+
+  <div class="app-main">
+    <header class="app-header">
+      <button class="icon-btn" id="menu-toggle" aria-label="Toggle sidebar">☰</button>
+      <div>
+        <div class="app-title">DSA Mentor</div>
+        <div class="status"><span class="status-dot"></span> AI mentor online</div>
+      </div>
+      <select id="mode-select" aria-label="Learning mode">
+        <option value="learn">Learn</option>
+        <option value="practice">Practice</option>
+        <option value="hint">Hint</option>
+        <option value="explain">Explain code</option>
+        <option value="interview">Interview</option>
+      </select>
+      <button class="btn btn-ghost" id="clear-chat">Clear chat</button>
+    </header>
+
+    <div class="chat-area" id="chat-area">
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">&lt;/&gt;</div>
+        <h2>What do you want to learn today?</h2>
+        <p>Ask me anything about Data Structures &amp; Algorithms.</p>
+        <div class="prompt-grid">
+          <button class="prompt-card" data-prompt="Explain binary search">Learn a concept<span>Explain binary search</span></button>
+          <button class="prompt-card" data-prompt="How do I solve Two Sum?">Solve a problem<span>How do I solve Two Sum?</span></button>
+          <button class="prompt-card" data-prompt="Give me a hint for a sliding window problem">Get a hint<span>Give me a hint for a sliding window problem</span></button>
+          <button class="prompt-card" data-prompt="What is the time complexity of merge sort?">Complexity<span>What is the time complexity of merge sort?</span></button>
+        </div>
+      </div>
+      <div class="messages" id="messages"></div>
+    </div>
+
+    <form class="composer" id="composer">
+      <textarea id="composer-input" placeholder="Ask a DSA question..." rows="1"></textarea>
+      <button type="submit" class="btn btn-primary" id="send-btn" disabled>Send</button>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/highlight.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+<script src="script.js"></script>
+</body>
+</html>
