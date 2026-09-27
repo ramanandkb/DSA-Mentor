@@ -1,5 +1,5 @@
 # DSA Mentor
-
+https://dsamentorai.netlify.app/
 An AI-powered DSA learning assistant: a vanilla HTML/CSS/JS frontend talking to a
 FastAPI backend, which calls the Groq API. The frontend never sees the API key.
 
