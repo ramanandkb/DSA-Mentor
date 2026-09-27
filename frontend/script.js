@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/chat";
+const API_URL = "https://dsa-mentor-kohl.vercel.app/chat";
 
 const TOPICS = [
   ["Arrays", "Contiguous storage & indexing"],
