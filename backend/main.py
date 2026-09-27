@@ -16,6 +16,7 @@ app.add_middleware(
 
 
 @app.post("/chat", response_model=ChatResponse)
+@app.post("/api/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
     if not req.message.strip():
         raise HTTPException(status_code=400, detail="Message cannot be empty.")
@@ -27,5 +28,6 @@ def chat(req: ChatRequest):
 
 
 @app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
